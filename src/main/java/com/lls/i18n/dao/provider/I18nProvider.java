@@ -6,4 +6,7 @@ package com.lls.i18n.dao.provider;
  * @date 2019-07-18
  ************************************/
 public class I18nProvider {
+
+
+
 }
