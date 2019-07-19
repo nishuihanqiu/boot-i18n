@@ -15,6 +15,15 @@ public class I18nDO {
     private Date createdAt;
     private Date updatedAt;
 
+    public I18nDO() {
+    }
+
+    public I18nDO(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

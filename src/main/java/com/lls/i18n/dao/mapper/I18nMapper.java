@@ -2,10 +2,7 @@ package com.lls.i18n.dao.mapper;
 
 import com.lls.i18n.dao.provider.I18nProvider;
 import com.lls.i18n.model.I18nDO;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,6 +28,7 @@ public interface I18nMapper {
     long count(Map<String, Object> map);
 
     @SelectProvider(method = "getItem", type = I18nProvider.class)
-    I18nDO getItem(long id);
+    I18nDO getItem(@Param("id") long id);
+
 
 }
