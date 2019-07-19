@@ -21,4 +21,6 @@ public interface I18nService {
 
     I18nDO getItem(long id);
 
+    String getDescription();
+
 }

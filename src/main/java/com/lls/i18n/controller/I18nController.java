@@ -55,4 +55,9 @@ public class I18nController {
         return new Result<>(i18nService.getItem(id));
     }
 
+    @GetMapping("/description")
+    public Result<String> getDescription() {
+        return new Result<>(i18nService.getDescription());
+    }
+
 }

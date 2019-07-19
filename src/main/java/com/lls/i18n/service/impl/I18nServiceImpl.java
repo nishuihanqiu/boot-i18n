@@ -1,12 +1,13 @@
 package com.lls.i18n.service.impl;
 
-import com.lls.i18n.config.MessageContantants;
+import com.lls.i18n.config.MessageConstants;
 import com.lls.i18n.dao.mapper.I18nMapper;
-import com.lls.i18n.exception.NotFoundException;
 import com.lls.i18n.model.I18nDO;
 import com.lls.i18n.service.BaseService;
 import com.lls.i18n.service.I18nService;
 import com.lls.i18n.util.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ import java.util.Map;
 public class I18nServiceImpl extends BaseService implements I18nService {
 
     private final I18nMapper i18nMapper;
+    private final Logger logger = LoggerFactory.getLogger(I18nService.class);
 
     @Autowired
     public I18nServiceImpl(I18nMapper i18nMapper) {
@@ -30,7 +32,7 @@ public class I18nServiceImpl extends BaseService implements I18nService {
 
     @Override
     public Long save(I18nDO i18nDO) {
-        String message = this.getMessage(MessageContantants.ERROR_MESSAGE_ILLEGAL_ARGUMENT_NAME);
+        String message = this.getMessage(MessageConstants.ERROR_MESSAGE_ILLEGAL_ARGUMENT_NAME);
         ExceptionUtils.checkArgmentNull(i18nDO.getName(), message);
         return i18nMapper.save(i18nDO);
     }
@@ -48,9 +50,17 @@ public class I18nServiceImpl extends BaseService implements I18nService {
     @Override
     public I18nDO getItem(long id) {
         I18nDO i18nDO = i18nMapper.getItem(id);
-        String message = this.getMessage(MessageContantants.ERROR_MESSAGE_NOT_FOUND);
+        String message = this.getMessage(MessageConstants.ERROR_MESSAGE_NOT_FOUND);
         ExceptionUtils.checkNull(i18nDO, message);
         return i18nDO;
     }
 
+    @Override
+    public String getDescription() {
+        String message = this.getMessage(MessageConstants.NOTIFICATION_QC_TASK_STARTED_MESSAGE,
+                new Object[]{ "projectCode001", "outMaterialCode001", "outMaterialName001",
+                "processName001", "QcCategory001"}, "");
+        logger.info(message);
+        return message;
+    }
 }

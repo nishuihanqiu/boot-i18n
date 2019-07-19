@@ -1,5 +1,7 @@
 package com.lls.i18n.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
@@ -12,6 +14,8 @@ import java.util.Locale;
  * @date 2019-07-19
  ************************************/
 public abstract class BaseService {
+
+  private final Logger logger = LoggerFactory.getLogger(BaseService.class);
 
   @Autowired
   private MessageSource messageSource;
@@ -32,6 +36,15 @@ public abstract class BaseService {
       localName = "CN";
     }
     return this.getMessage(key, null, "", localName.toLowerCase());
+  }
+
+  protected String getMessage(String key, Object[] args, String defaultMessage) {
+    String localName = httpServletRequest.getHeader("X-LOCAL");
+    if (localName == null) {
+      localName = "";
+    }
+    logger.info("current local:{}, defaultMessage:{}", localName, defaultMessage);
+    return this.getMessage(key, args, defaultMessage, localName.toLowerCase());
   }
 
 }
