@@ -8,7 +8,8 @@ package com.lls.i18n.config;
 public class MessageContantants {
 
   // exception
-  public static final String NOT_FOUND_THIS_ITEM = "error_message.name";
+  public static final String ERROR_MESSAGE_NOT_FOUND = "error_message.not_found";
+  public static final String ERROR_MESSAGE_ILLEGAL_ARGUMENT_NAME = "error_message.argument.name";
 
 
 

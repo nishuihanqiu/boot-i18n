@@ -27,7 +27,7 @@ public abstract class BaseService {
   }
 
   protected String getMessage(String key) {
-    String localName = httpServletRequest.getHeader("local");
+    String localName = httpServletRequest.getHeader("X-LOCAL");
     if (localName == null) {
       localName = "CN";
     }

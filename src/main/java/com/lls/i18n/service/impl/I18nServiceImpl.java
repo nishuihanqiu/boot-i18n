@@ -6,6 +6,7 @@ import com.lls.i18n.exception.NotFoundException;
 import com.lls.i18n.model.I18nDO;
 import com.lls.i18n.service.BaseService;
 import com.lls.i18n.service.I18nService;
+import com.lls.i18n.util.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,8 @@ public class I18nServiceImpl extends BaseService implements I18nService {
 
     @Override
     public Long save(I18nDO i18nDO) {
+        String message = this.getMessage(MessageContantants.ERROR_MESSAGE_ILLEGAL_ARGUMENT_NAME);
+        ExceptionUtils.checkArgmentNull(i18nDO.getName(), message);
         return i18nMapper.save(i18nDO);
     }
 
@@ -45,10 +48,8 @@ public class I18nServiceImpl extends BaseService implements I18nService {
     @Override
     public I18nDO getItem(long id) {
         I18nDO i18nDO = i18nMapper.getItem(id);
-        String message = this.getMessage(MessageContantants.NOT_FOUND_THIS_ITEM);
-        if (i18nDO == null) {
-            throw new NotFoundException(message);
-        }
+        String message = this.getMessage(MessageContantants.ERROR_MESSAGE_NOT_FOUND);
+        ExceptionUtils.checkNull(i18nDO, message);
         return i18nDO;
     }
 
