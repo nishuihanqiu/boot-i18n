@@ -47,4 +47,14 @@ public abstract class BaseService {
     return this.getMessage(key, args, defaultMessage, localName.toLowerCase());
   }
 
+  /* *
+   * 1. barren 加配置
+   * 2. 定义配置规范：header和path
+   * 3. retrofit  加header
+   * 4. 异常日志记录 cat logger
+   * 5. get message 最佳获取方式
+   * 6. 统计修改数量
+   * 7. x_lang : cn en 定义
+   *
+   */
 }
