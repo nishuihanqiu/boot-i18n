@@ -1,9 +1,10 @@
 package com.lls.i18n.service.impl;
 
-import com.lls.i18n.config.Result;
+import com.lls.i18n.config.MessageContantants;
 import com.lls.i18n.dao.mapper.I18nMapper;
 import com.lls.i18n.exception.NotFoundException;
 import com.lls.i18n.model.I18nDO;
+import com.lls.i18n.service.BaseService;
 import com.lls.i18n.service.I18nService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.Map;
  * @date 2019-07-18
  ************************************/
 @Service
-public class I18nServiceImpl implements I18nService {
+public class I18nServiceImpl extends BaseService implements I18nService {
 
     private final I18nMapper i18nMapper;
 
@@ -44,8 +45,9 @@ public class I18nServiceImpl implements I18nService {
     @Override
     public I18nDO getItem(long id) {
         I18nDO i18nDO = i18nMapper.getItem(id);
+        String message = this.getMessage(MessageContantants.NOT_FOUND_THIS_ITEM);
         if (i18nDO == null) {
-            throw new NotFoundException("此项不存在");
+            throw new NotFoundException(message);
         }
         return i18nDO;
     }
