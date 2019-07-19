@@ -17,7 +17,7 @@ public class ExceptionUtils {
         throw new NotFoundException(message);
     }
 
-    public static void checkArgmentNull(@Nullable Object object, String message) throws IllegalArgumentException {
+    public static void checkArgumentNull(@Nullable Object object, String message) throws IllegalArgumentException {
         if (object != null) {
             return;
         }

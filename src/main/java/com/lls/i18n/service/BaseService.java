@@ -55,6 +55,5 @@ public abstract class BaseService {
    * 5. get message 最佳获取方式
    * 6. 统计修改数量
    * 7. x_lang : cn en 定义
-   *
    */
 }

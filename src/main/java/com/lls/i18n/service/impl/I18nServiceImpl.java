@@ -33,7 +33,7 @@ public class I18nServiceImpl extends BaseService implements I18nService {
     @Override
     public Long save(I18nDO i18nDO) {
         String message = this.getMessage(MessageConstants.ERROR_MESSAGE_ILLEGAL_ARGUMENT_NAME);
-        ExceptionUtils.checkArgmentNull(i18nDO.getName(), message);
+        ExceptionUtils.checkArgumentNull(i18nDO.getName(), message);
         return i18nMapper.save(i18nDO);
     }
 
